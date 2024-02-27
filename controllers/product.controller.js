@@ -4,6 +4,7 @@ const categoryModule = require('../models/category.model')
 const Product = require('../models/product.model')
 
 const Rating = require('../models/rating.model')
+const { number } = require('joi')
 const { validateAddProduct } = require('../validation/product.validator')
 
 const getAllProducts = asyncHandler(async (req, res) => {
@@ -79,7 +80,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
   const { id } = req.params
   const product = await productModel.findOne({ _id: id })
   if (!product) {
-    res.status(404).send(`there is no product with id ${req.params.id}`)
+    res.status(404).send(`there is no book with id ${req.params.id}`)
     return
   }
   await productModel.deleteOne({ _id: id })
